@@ -9,6 +9,6 @@
   "author": "ghanshyam baviskar",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^17.2.0"
+    "hapi": "^16.4.3"
   }
 }
