@@ -8,7 +8,6 @@ server.connection({
     host: 'localhost'
 });
 
-
 // home route
 server.route({
     method: 'GET',
@@ -17,6 +16,38 @@ server.route({
         reply('<h3>hello hapi!</h3>')
     }
 });
+
+// dynamic route
+server.route({
+    method: 'GET',
+    path: '/user/{name}',
+    handler: (request,reply)=>{
+        reply('<h4>hello '+request.params.name+'</h4>');
+    }
+});
+
+// static pages
+server.register(require('inert'),(err)=>{
+    if(err){
+        throw err;
+    }
+    server.route({
+        method: 'GET',
+        path: '/about',
+        handler: (request, reply)=>{
+            reply.file('./public/about.html');
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/image',
+        handler: (request, reply)=>{
+            reply.file('./public/hapi.png');
+        }
+    });
+});
+
 
 // start server
 server.start((err) => {
